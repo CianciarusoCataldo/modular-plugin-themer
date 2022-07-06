@@ -1,6 +1,6 @@
 {
   "name": "modular-plugin-themer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Enhance your web app with a custom theme, when using modular-engine system",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

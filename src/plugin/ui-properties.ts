@@ -1,4 +1,4 @@
-import { ModularUiTheme } from "./types";
+import { ThemerTheme } from "./types";
 
 export const uiProperties = {
   default: {
@@ -11,7 +11,7 @@ export const uiProperties = {
   },
 } as const;
 
-export const defaultTheme: ModularUiTheme = {
+export const defaultTheme: ThemerTheme = {
   default: {},
   dark: {},
 };

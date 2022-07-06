@@ -1,15 +1,15 @@
 import { ModularEnginePlugin } from "modular-engine-types";
 
-export type ModularUiThemeField = {
+export type ThemerThemeField = {
   bodyColor?: string;
   uiColor?: string;
 };
 
-export type ModularUiTheme = {
-  default?: ModularUiThemeField;
-  dark?: ModularUiThemeField;
+export type ThemerTheme = {
+  default?: ThemerThemeField;
+  dark?: ThemerThemeField;
 };
 
-export type ModulaUiConnectorPlugin = ModularEnginePlugin<{
-  theme?: ModularUiTheme;
+export type ThemerPlugin = ModularEnginePlugin<{
+  theme?: ThemerTheme;
 }>;

@@ -1,5 +1,5 @@
 /** types */
-import { ModulaUiConnectorPlugin } from "./types";
+import { ThemerPlugin } from "./types";
 
 /** utils */
 import { fillObject } from "modular-utils";
@@ -7,7 +7,7 @@ import { fillObject } from "modular-utils";
 /** internal */
 import { defaultTheme, uiProperties } from "./ui-properties";
 
-const modularUiConnector: ModulaUiConnectorPlugin = () => ({
+const modularUiConnector: ThemerPlugin = () => ({
   feature: "modularUiConnector",
   create: (config) => {
     const theme = fillObject({
