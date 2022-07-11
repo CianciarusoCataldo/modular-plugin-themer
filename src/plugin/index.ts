@@ -1,68 +1,26 @@
 /** types */
+
 import { ThemerPlugin } from "./types";
 
-/** utils */
-import { fillObject } from "modular-utils";
+/** utils  */
 
-/** internal */
-import { defaultTheme, uiProperties } from "./ui-properties";
+import { applyTheme, setBodyClass } from "./helper";
 
-const modularUiConnector: ThemerPlugin = () => ({
-  feature: "modularUiConnector",
+/**
+ * Extend modular-engine with the a theme manager. Themer plugin checks the modular-engine config file for `theme` field.
+ * If the field is set, the given theme will be applied on the entire web-app through global window object
+ *
+ * @returns `themer` plugin
+ *
+ * @see https://github.com/CianciarusoCataldo/modular-plugin-themer
+ *
+ * @see https://github.com/CianciarusoCataldo/modular-engine
+ *
+ */
+const themerPlugin: ThemerPlugin = () => ({
+  feature: "themer",
   create: (config) => {
-    const theme = fillObject({
-      toFill: config.theme,
-      defaultObj: defaultTheme,
-    });
-    let uiStyle = "";
-    let bodyStyle = "";
-    const defaultColors = theme.default || {};
-    const darkColors = theme.dark || {};
-
-    if (defaultColors.uiColor) {
-      uiStyle += `${uiProperties.default.background}: ${defaultColors.uiColor}; `;
-    }
-
-    if (defaultColors.bodyColor) {
-      bodyStyle += ` body.light { background: ${defaultColors.bodyColor}; }`;
-    }
-
-    if (darkColors.uiColor) {
-      uiStyle += `${uiProperties.dark.background}: ${darkColors.uiColor}; `;
-    }
-
-    if (darkColors.bodyColor) {
-      bodyStyle += ` body.dark { background: ${darkColors.bodyColor}; }`;
-    }
-
-    let customStyle: string = `
-      * {
-        ${uiStyle}
-      }
-      ${bodyStyle}
-    * {
-      scrollbar-width: thin;
-      scrollbar-color: #c0c0c0;
-    }
-    
-    *::-webkit-scrollbar {
-      width: 12px;
-    }
-    
-    *::-webkit-scrollbar-track {
-      background: linear-gradient(to right, #2d3748, #1d232e);
-    }
-    
-    *::-webkit-scrollbar-thumb {
-      background-color: #c0c0c0;
-      border-radius: 20px;
-      border: 3px solid #c0c0c0;
-    }
-    `;
-
-    const style = document.createElement("style");
-    style.textContent = customStyle;
-    document.head.append(style);
+    const theme = applyTheme(config.theme);
 
     return {
       field: "theme",
@@ -72,9 +30,7 @@ const modularUiConnector: ThemerPlugin = () => ({
   format: (config, enabledPlugins) => {
     enabledPlugins.ui &&
       config.ui.onDarkModeChange.push((darkMode) => {
-        window.document.body.classList.remove("dark", "light");
-
-        window.document.body.classList.add(darkMode ? "dark" : "light");
+        setBodyClass(darkMode);
         window.document.body.style.background = "";
       });
 
@@ -82,11 +38,9 @@ const modularUiConnector: ThemerPlugin = () => ({
   },
   preInit: (config, enabledPlugins) => {
     if (enabledPlugins.ui) {
-      window.document.body.classList.remove("light", "dark");
-
-      window.document.body.classList.add(config.ui.darkMode ? "dark" : "light");
+      setBodyClass(config.ui.darkMode);
     }
   },
 });
 
-export default modularUiConnector;
+export default themerPlugin;

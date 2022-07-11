@@ -1,15 +1,15 @@
 import { ModularEnginePlugin } from "modular-engine-types";
 
-export type ThemerThemeField = {
+export type ThemerPluginThemeField = {
   bodyColor?: string;
   uiColor?: string;
 };
 
-export type ThemerTheme = {
-  default?: ThemerThemeField;
-  dark?: ThemerThemeField;
+export type ThemerPluginTheme = {
+  default?: ThemerPluginThemeField;
+  dark?: ThemerPluginThemeField;
 };
 
 export type ThemerPlugin = ModularEnginePlugin<{
-  theme?: ThemerTheme;
+  theme?: ThemerPluginTheme;
 }>;

@@ -1,6 +1,6 @@
-import { ThemerTheme } from "./types";
+import { ThemerPluginTheme } from "./types";
 
-export const uiProperties = {
+export const themerPluginCssProperties = {
   default: {
     background: "--modular-custom-background-light",
     text: "--modular-custom-text-color-light",
@@ -11,7 +11,7 @@ export const uiProperties = {
   },
 } as const;
 
-export const defaultTheme: ThemerTheme = {
+export const themerPluginDefaultTheme: ThemerPluginTheme = {
   default: {},
   dark: {},
 };
