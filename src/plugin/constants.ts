@@ -1,3 +1,11 @@
+/**
+ * @file {@link https://github.com/CianciarusoCataldo/modular-plugin-themer modular-plugin-themer} constants file
+ *
+ * @see https://cianciarusocataldo.github.io/modular-plugin-themer
+ *
+ * @see https://cianciarusocataldo.github.io/modular-engine/docs
+ */
+
 import { ThemerPluginTheme } from "./types";
 
 export const themerPluginCssProperties = {

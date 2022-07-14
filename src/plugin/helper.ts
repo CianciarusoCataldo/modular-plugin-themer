@@ -1,8 +1,19 @@
+/**
+ * @file {@link https://github.com/CianciarusoCataldo/modular-plugin-themer modular-plugin-themer} init file
+ *
+ * @see https://cianciarusocataldo.github.io/modular-plugin-themer
+ *
+ * @see https://cianciarusocataldo.github.io/modular-engine/docs
+ */
+
 import { ThemerPluginTheme } from "./types";
 
 import { fillObject } from "modular-utils";
 
-import { themerPluginCssProperties,themerPluginDefaultTheme } from "./constants";
+import {
+  themerPluginCssProperties,
+  themerPluginDefaultTheme,
+} from "./constants";
 
 export const setBodyClass = (darkMode: boolean) => {
   window.document.body.classList.remove("dark", "light");
@@ -65,5 +76,5 @@ export const applyTheme = (inputTheme?: ThemerPluginTheme) => {
   style.textContent = customStyle;
   document.head.append(style);
 
-  return theme
+  return theme;
 };
